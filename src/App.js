@@ -14,21 +14,17 @@ class App extends Component {
       loggedIn: false,
       username: null
     };
-
-    this.getUser = this.getUser.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getUser();
-  }
+  };
 
-  updateUser(userObject) {
+  updateUser = userObject => {
     this.setState(userObject);
-  }
+  };
 
-  getUser() {
+  getUser = () => {
     axios.get("/user/").then(response => {
       if (response.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
@@ -45,15 +41,15 @@ class App extends Component {
         });
       }
     });
-  }
+  };
 
   render() {
     return (
       <div className="App">
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
+
         {this.state.loggedIn && <p>Join the party, {this.state.name}!</p>}
-        {/* Routes to different components */}
+
         <Route exact path="/" component={Home} />
         <Route
           path="/login"

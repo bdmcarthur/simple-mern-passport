@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
-import axios from "axios";
+import * as AuthenticationServices from "../services/auth-services";
 
 class Navbar extends Component {
   constructor() {
     super();
-    this.logout = this.logout.bind(this);
   }
 
-  logout(event) {
+  logout = event => {
     event.preventDefault();
-    axios
-      .post("/user/logout")
+    AuthenticationServices.logOutService()
       .then(response => {
-        console.log('logout', response.data);
         if (response.status === 200) {
           this.props.updateUser({
             loggedIn: false,
             username: null
           });
+          this.setState({
+            redirectTo: "/"
+          });
         }
       })
       .catch(error => {
-        console.log("Logout error");
+        console.log(error);
       });
-  }
+  };
 
   render() {
     const loggedIn = this.props.loggedIn;
