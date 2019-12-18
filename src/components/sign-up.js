@@ -12,15 +12,15 @@ class Signup extends Component {
       name: "",
       redirectTo: null
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(event) {
+
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
-  handleSubmit(event) {
+  };
+
+  handleSubmit = event => {
     event.preventDefault();
     const { username, password, name } = this.state;
     AuthenticationServices.signUpService({
@@ -28,30 +28,19 @@ class Signup extends Component {
       password,
       name
     })
-      .then(response => {
-        if (response) {
-          AuthenticationServices.logInService({
-            username,
-            password
-          })
-            .then(user => {
-              this.props.updateUser({
-                loggedIn: true,
-                user: user
-              });
-              this.setState({
-                redirectTo: "/"
-              });
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        }
+      .then(user => {
+        this.props.updateUser({
+          loggedIn: true,
+          user: user
+        });
+        this.setState({
+          redirectTo: "/"
+        });
       })
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   render() {
     if (this.state.redirectTo) {
