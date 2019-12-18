@@ -15,7 +15,7 @@ class Navbar extends Component {
         if (response.status === 200) {
           this.props.updateUser({
             loggedIn: false,
-            username: null
+            user: null
           });
           this.setState({
             redirectTo: "/"

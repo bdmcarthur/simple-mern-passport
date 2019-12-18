@@ -12,7 +12,7 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      username: null
+      user: null
     };
   }
 
@@ -22,6 +22,7 @@ class App extends Component {
 
   updateUser = userObject => {
     this.setState(userObject);
+    console.log(this.state.user);
   };
 
   getUser = () => {
@@ -31,13 +32,13 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          user: response.data.user
         });
       } else {
         console.log("Get user: no user");
         this.setState({
           loggedIn: false,
-          username: null
+          user: null
         });
       }
     });

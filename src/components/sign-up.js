@@ -37,7 +37,7 @@ class Signup extends Component {
             .then(user => {
               this.props.updateUser({
                 loggedIn: true,
-                username: user
+                user: user
               });
               this.setState({
                 redirectTo: "/"

@@ -13,7 +13,7 @@ export const signUpService = ({ username, password, name }) =>
         name
       })
       .then(response => {
-        const user = response.data.username;
+        const user = response.data;
         resolve(user);
       })
       .catch(error => {
@@ -26,7 +26,8 @@ export const logInService = ({ username, password }) =>
     authAPI
       .post("/user/login", { username, password })
       .then(response => {
-        const user = response.data.username;
+        const user = response.data;
+        console.log("serv", user);
         resolve(user);
       })
       .catch(error => {
