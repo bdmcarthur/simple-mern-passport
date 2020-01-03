@@ -23,7 +23,6 @@ class LoginForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { username, password } = this.state;
-
     AuthenticationServices.logInService({
       username,
       password
