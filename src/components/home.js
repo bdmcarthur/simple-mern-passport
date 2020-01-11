@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function home() {
+const Home = () => {
   return (
-    <div>
+    <div className="container text-center mt-4">
       <p>It's good to be home</p>
       <img
         src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg"
@@ -11,4 +11,6 @@ export default function home() {
       />
     </div>
   );
-}
+};
+
+export default Home;

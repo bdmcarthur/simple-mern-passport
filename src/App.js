@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import axios from "axios";
-import { Route } from "react-router-dom";
-
-import Signup from "./components/sign-up";
-import LoginForm from "./components/login-form";
-import Navbar from "./components/navbar";
-import Home from "./components/home";
+import Signup from "./Components/Signup";
+import LoginForm from "./Components/Login";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import About from "./Components/About";
 
 class App extends Component {
   constructor() {
@@ -46,21 +46,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <BrowserRouter>
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-
-        {this.state.loggedIn && <p>Join the party, {this.state.name}!</p>}
-
-        <Route exact path="/" component={Home} />
-        <Route
-          path="/login"
-          render={() => <LoginForm updateUser={this.updateUser} />}
-        />
-        <Route
-          path="/signup"
-          render={() => <Signup updateUser={this.updateUser} />}
-        />
-      </div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            path="/login"
+            render={() => <LoginForm updateUser={this.updateUser} />}
+          />
+          <Route
+            path="/signup"
+            render={() => <Signup updateUser={this.updateUser} />}
+          />
+          <Route path="/about" render={() => <About />} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
