@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const passport = require("./passport");
 const app = express();
 const PORT = 8080;
+
 // Route requires
 const user = require("./routes/user");
 

@@ -27,7 +27,6 @@ export const logInService = ({ username, password }) =>
       .post("/user/login", { username, password })
       .then(response => {
         const user = response.data;
-        console.log("serv", user);
         resolve(user);
       })
       .catch(error => {

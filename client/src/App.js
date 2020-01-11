@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import Signup from "./Components/Signup";
 import LoginForm from "./Components/Login";
@@ -22,14 +22,12 @@ class App extends Component {
 
   updateUser = userObject => {
     this.setState(userObject);
-    console.log(this.state.user);
   };
 
   getUser = () => {
     axios.get("/user/").then(response => {
       if (response.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
-
+        console.log("Get User: There is a user saved in the server session");
         this.setState({
           loggedIn: true,
           user: response.data.user
@@ -47,7 +45,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        <Navbar
+          updateUser={this.updateUser}
+          user={this.state.user}
+          loggedIn={this.state.loggedIn}
+        />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
